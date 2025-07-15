@@ -22,6 +22,7 @@
 
 #include "LockOnProjectile.h"
 #include "SkillShotProjectile.h"
+#include "Projectile.h"
 
 Game::Game(const Window& window)
 	:BaseGame(window)
@@ -126,8 +127,7 @@ void Game::ProcessKeyDownEvent(const SDL_KeyboardEvent& e)
 	{
 	case SDLK_p:
 		Unit::SwitchDrawingHitboxes();
-		LockOnProjectile::SwitchDrawingHitboxes();
-		SkillShotProjectile::SwitchDrawingHitboxes();
+		Projectile::SwitchDrawingHitboxes();
 		std::cout << std::boolalpha << "[DEBUG] DrawingHitboxes: " << Unit::IsDrawingHitboxes() << std::endl;
 		break;
 	case SDLK_o:

@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "ExampleAbility.h"
+#include "Volley.h"
 #include "AutoAttack.h"
 
 HooverChampion::HooverChampion(const Window& window, ProjectileManager* projectilemanagerref)
@@ -14,6 +15,7 @@ HooverChampion::HooverChampion(const Window& window, ProjectileManager* projecti
 
 	// Abilities
 	m_pAbilityInterface->AssignAbility(AbilityKey::Q, new ExampleAbility("Q", this->m_Transform.location));
+	m_pAbilityInterface->AssignAbility(AbilityKey::W, new Volley("W",this->m_Transform.location));
 	// AutoAttack
 	m_pAutoAttack = new AutoAttack(m_Transform.location, nullptr);
 }

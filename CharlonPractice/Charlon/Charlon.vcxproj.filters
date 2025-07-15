@@ -129,6 +129,15 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Visualisation</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IClone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Volley.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ability.h">
@@ -226,6 +235,15 @@
     </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Visualisation</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IClone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Volley.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

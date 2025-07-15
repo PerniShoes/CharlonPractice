@@ -115,7 +115,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Engine.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -144,6 +144,7 @@ xcopy "$(SolutionDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,12 +161,14 @@ xcopy "$(SolutionDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HooverChampion.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="IClone.cpp" />
     <ClCompile Include="InfoPlate.cpp" />
     <ClCompile Include="JsonFilehelper.cpp" />
     <ClCompile Include="LockOnProjectile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OrientationManager.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SkillShotProjectile.cpp" />
@@ -179,6 +182,7 @@ xcopy "$(SolutionDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UserInterfaceElement.cpp" />
+    <ClCompile Include="Volley.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ability.h" />
@@ -194,12 +198,14 @@ xcopy "$(SolutionDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
     <ClInclude Include="Game.h" />
     <ClInclude Include="HooverChampion.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="IClone.h" />
     <ClInclude Include="InfoPlate.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="JsonFilehelper.h" />
     <ClInclude Include="LockOnProjectile.h" />
     <ClInclude Include="OrientationManager.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SkillShotProjectile.h" />
@@ -213,11 +219,16 @@ xcopy "$(SolutionDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UserInterfaceElement.h" />
+    <ClInclude Include="Volley.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <PropertyGroup>
     <LocalDebuggerWorkingDirectory>$(TargetDir)</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>C:\Users\marek\Desktop\SDL\SDL2-2.30.11\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\marek\Desktop\SDL\SDL2-2.30.11\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
 </Project>

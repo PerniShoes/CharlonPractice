@@ -16,8 +16,8 @@ void ResourceManager::Init(const std::string& filePath)
 		return;
 	}
 	c_TextureManager = new TextureManager{ filePath };
-	c_SoundEffectManager = new SoundEffectManager{ filePath };
-	c_SoundStreamManager = new SoundStreamManager{ filePath };
+	//c_SoundEffectManager = new SoundEffectManager{ filePath };
+	//c_SoundStreamManager = new SoundStreamManager{ filePath };
 }
 
 void ResourceManager::CleanUp()

@@ -1,18 +1,8 @@
 #pragma once
+#include"Projectile.h"
 
-#include "Transform.h"
-
-class Unit;
-
-class LockOnProjectile
+class LockOnProjectile : public Projectile
 {
-// STATICS
-public:
-	static void SetDrawingHitboxes(bool state);
-	static void SwitchDrawingHitboxes();
-	static bool IsDrawingHitboxes();
-protected:
-	static bool c_IsDrawingHitboxes;
 
 // NON STATICS
 public:
@@ -23,18 +13,15 @@ public:
 	LockOnProjectile& operator=(LockOnProjectile&& proj) = delete;
 	virtual ~LockOnProjectile();
 
-	virtual void Draw() const;
-	virtual void Update(float elapsedSec);
+	virtual void Draw() const override;
+	virtual void Update(float elapsedSec) override;
 
+	virtual bool ReadyToDelete() const override;
 	virtual bool HasHit() const;
 
 protected:
-	Transform m_Transform;
-	float m_Speed;
-	float m_Damage;
-	Unit* m_pTarget;
-	Rectf m_Hitbox;
 
+	Unit* m_pTarget;
 	bool m_HasHit;
 };
 

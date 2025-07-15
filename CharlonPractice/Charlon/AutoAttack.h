@@ -1,6 +1,8 @@
 #pragma once
 #include "LockOnProjectile.h"
-class AutoAttack : public LockOnProjectile
+#include "IClone.h"
+
+class AutoAttack : public LockOnProjectile, public IClone<AutoAttack>
 {
 public:
 	AutoAttack(const Point2f& startingPos, Unit* target, float damage = 10.f, float speed = 300.f);
@@ -11,10 +13,12 @@ public:
 	virtual ~AutoAttack();
 
 	// Returns a copy of the autoattack
-	virtual AutoAttack* Clone() const;
+	virtual AutoAttack* Clone() const override;
 	// Returns an autoattack with the same damage and speed
 	virtual AutoAttack* Clone(const Point2f& startingPos, Unit* target) const;
 
 private:
+
+
 };
 

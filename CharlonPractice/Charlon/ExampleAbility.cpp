@@ -9,11 +9,11 @@
 #include "ProjectileManager.h"
 
 ExampleAbility::ExampleAbility(const std::string& key, const Point2f& championLocationRef)
-	:Ability(Type::skillshot,key,"ExampleAbility",3,10)
+	:Ability(Type::skillshot,key,"ExampleAbility",3,3)
 	,m_ChampionLocationRef{championLocationRef}
 	,m_IsHoldingDown{false}
 	,m_LastMousePos{}
-	,m_Range{200}
+	,m_Range{300}
 {
 }
 

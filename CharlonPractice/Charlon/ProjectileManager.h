@@ -2,6 +2,7 @@
 
 #include <vector>
 
+class Projectile;
 class LockOnProjectile;
 class SkillShotProjectile;
 class Unit;
@@ -43,6 +44,8 @@ private:
 	AutoAttack* m_LastAutoAttackUsed;
 
 	bool m_IsShiftHeld;
+
+	std::vector<Projectile*> m_Projectiles{};
 
 	void ShooterLogic(Champion* shooter, Unit* unit);
 	void ShooterLogic(Champion* shooter, Unit* unit, AutoAttack* autoAttack);

@@ -4,6 +4,8 @@
 #include "AutoAttack.h"
 #include "SkillShotProjectile.h"
 
+#include "Projectile.h"
+
 #include "Champion.h"
 
 #include "OrientationManager.h"
@@ -37,7 +39,13 @@ ProjectileManager::ProjectileManager(int reserveLockOn, int reserveSkillShot)
 
 ProjectileManager::~ProjectileManager()
 {
+
+    for (int i{ 0 }; i < m_Projectiles.size(); i++)
+    {
+        m_Projectiles.pop_back();
+    }
     delete m_pAutoAttackDefault;
+
 }
 
 void ProjectileManager::PushBackLockOn(const Point2f& startingPos, Unit* target, float damage, float speed)
@@ -52,32 +60,54 @@ void ProjectileManager::PushBackAutoAttack(const Point2f& startingPos, Unit* tar
 
 void ProjectileManager::PushBackAutoAttack(AutoAttack* autoAttack)
 {
-    delete autoAttack;
+    m_Projectiles.push_back(autoAttack);
 }
 
 void ProjectileManager::PushBackSkillShot(const Point2f& startingPos, const Point2f& destination, float damage, float speed)
 {
-    
+    PushBack(new SkillShotProjectile{ startingPos, destination});
+    //std::cout << "PUSHBACK BOO234M\n";
 }
 
 void ProjectileManager::PushBack(LockOnProjectile* proj)
 {
+   
     delete proj;
 }
 
 void ProjectileManager::PushBack(SkillShotProjectile* proj)
 {
-    delete proj;
+      m_Projectiles.push_back(proj);
 }
 
 void ProjectileManager::DrawAll() const
 {
     // Draw projectiles
+    for (int i{ 0 }; i < m_Projectiles.size(); i++)
+    {
+        if (m_Projectiles[i] == nullptr) continue;
+        m_Projectiles[i]->Draw();
+    }
+
 }
 
 void ProjectileManager::UpdateAll(float elapsedSec)
 {
     // Update projectiles
+    for (int i{ 0 }; i < m_Projectiles.size(); i++)
+    {
+        if (m_Projectiles[i] == nullptr) continue;
+            m_Projectiles[i]->Update(elapsedSec);
+            if (m_Projectiles[i]->ReadyToDelete())
+            {
+                delete m_Projectiles[i];
+                m_Projectiles[i] = nullptr;
+            }
+    }
+
+    m_Projectiles.erase(std::remove(m_Projectiles.begin(), m_Projectiles.end(), nullptr), 
+        m_Projectiles.end());
+
 
     // Keep this line
     TryAutoAttack(m_LastMousePos, m_LastShooter, false);

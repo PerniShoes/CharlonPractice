@@ -3,6 +3,7 @@
 
 #include "utils.h"
 #include "ExampleAbility.h"
+#include "Volley.h"
 
 #include "InfoPlate.h"
 
@@ -20,7 +21,7 @@ Champion::Champion(const Window& window, ProjectileManager* projectilemanagerref
 	,m_pInfoPlate{ new InfoPlate{ this } }
 	,m_pAutoAttackTimer{ new Timer{1/2.f} }
 	,m_pAutoAttack{nullptr}
-	,m_AutoAttackRangeRadius{200.f}
+	,m_AutoAttackRangeRadius{300.f}
 	,m_DrawAARange{false}
 {
 	if (defaultConfigure)
@@ -59,6 +60,7 @@ void Champion::Draw() const
 		DrawHitbox();
 	}
 	// Draw range
+	
 	if (m_DrawAARange)
 	{
 		DrawEllipse(Point2f{ 0,0 }, m_AutoAttackRangeRadius, m_AutoAttackRangeRadius);

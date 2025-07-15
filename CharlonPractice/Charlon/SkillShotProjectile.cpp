@@ -6,43 +6,21 @@
 #include "Unit.h"
 
 #include <iostream>
+#include <algorithm>
 
 // STATICS
 std::vector<Unit*>* SkillShotProjectile::c_UnitVector{ nullptr };
-bool SkillShotProjectile::c_IsDrawingHitboxes{ false };
-
 void SkillShotProjectile::InitUnitVector(std::vector<Unit*>* unitVector)
 {
 	c_UnitVector = unitVector;
 }
 
-void SkillShotProjectile::SetDrawingHitboxes(bool state)
-{
-	c_IsDrawingHitboxes = state;
-}
-
-void SkillShotProjectile::SwitchDrawingHitboxes()
-{
-	c_IsDrawingHitboxes = !c_IsDrawingHitboxes;
-}
-
-bool SkillShotProjectile::IsDrawingHitboxes()
-{
-	return c_IsDrawingHitboxes;
-}
-
-
 // NON STATICS
-SkillShotProjectile::SkillShotProjectile(const Point2f& startingPos, const Point2f& destination, float damage, float speed)
-    :m_Transform{startingPos}
-    ,m_Speed{speed}
-    ,m_Damage{damage}
-    ,m_Destination{destination}
-    ,m_Hitbox{0,0,15,15}
+SkillShotProjectile::SkillShotProjectile(const Point2f& startingPos, const Point2f& destination)
+    :Projectile{Type::SkillShot, startingPos, 30.0f, 300.0f,Rectf{0,0,8,8}}
+	,m_Destination{destination}
     ,m_ReadyToDelete{false}
 {
-    m_Hitbox.left = -m_Hitbox.width / 2;
-    m_Hitbox.bottom = -m_Hitbox.height / 2;
 
 	if (c_UnitVector == nullptr)
 	{

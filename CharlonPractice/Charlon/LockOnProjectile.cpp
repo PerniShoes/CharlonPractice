@@ -5,35 +5,13 @@
 
 #include "unit.h"
 
-//STATICS
-bool LockOnProjectile::c_IsDrawingHitboxes{ false };
-
-void LockOnProjectile::SetDrawingHitboxes(bool state)
-{
-	c_IsDrawingHitboxes = state;
-}
-
-void LockOnProjectile::SwitchDrawingHitboxes()
-{
-	c_IsDrawingHitboxes = !c_IsDrawingHitboxes;
-}
-
-bool LockOnProjectile::IsDrawingHitboxes()
-{
-	return c_IsDrawingHitboxes;
-}
-
 // NON-STATICS
 LockOnProjectile::LockOnProjectile(const Point2f& startingPos,Unit* target, float damage, float speed)
-	:m_pTarget{target}
-	,m_Speed{speed}
-	,m_Damage{damage}
-	,m_Transform{startingPos}
-	,m_Hitbox{0,0,15,8}
+	:Projectile{ Type::LockOn, startingPos, 10.0f, 300.0f,Rectf{0,0,15,8} }
+	,m_pTarget{target}
 	,m_HasHit{false}
 {
-	m_Hitbox.left = -m_Hitbox.width / 2;
-	m_Hitbox.bottom = -m_Hitbox.height / 2;
+
 }
 
 LockOnProjectile::~LockOnProjectile()
@@ -84,6 +62,10 @@ void LockOnProjectile::Update(float elapsedSec)
 	}
 }
 
+bool LockOnProjectile::ReadyToDelete() const
+{
+	return HasHit();
+}
 bool LockOnProjectile::HasHit() const
 {
 	if (this == nullptr)
